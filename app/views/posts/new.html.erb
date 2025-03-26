@@ -1,0 +1,17 @@
+<h1>新規投稿ページ</h1>
+<%= form_with model: @post, local: true do |form| %>
+
+    <p><%= form.label :title %><br>
+    <%= form.text_field :title %>
+    </p>
+    
+    <p><%= form.label :content %><br>
+    <%= form.text_area :content %> 
+    </p>
+    
+    <p><%= form.submit "送信" %>
+    </p>
+    
+<% end %>
+    
+<%= link_to "戻る", root_path%>
