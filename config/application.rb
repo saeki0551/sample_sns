@@ -11,6 +11,11 @@ module SampleSns
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
+    # Propshaftの設定を追加
+    config.assets.enabled = false # Sprocketsを無効化
+    config.assets.paths << Rails.root.join('app', 'assets', 'builds')
+
+    
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
