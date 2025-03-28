@@ -18,10 +18,11 @@ console_command = '/rails/bin/rails console'
   processes = ['app']
 
 [[vm]]
-  memory = '1gb'
+  memory = '2gb'
   cpu_kind = 'shared'
-  cpus = 1
+  cpus = 2
 
 [deploy]
 release_command = "bin/rails db:migrate"
+
 
