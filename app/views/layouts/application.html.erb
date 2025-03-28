@@ -22,6 +22,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
+  <header>
+    <div class=flashNotice>
+      <%= flash[:notice] %>
+    </div>
+    <div class=flashAlert>
+      <%= flash[:alert] %>
+    </div
+  </header>
+
   <body>
     <%= yield %>
   </body>

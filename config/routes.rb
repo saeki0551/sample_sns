@@ -14,4 +14,7 @@ Rails.application.routes.draw do
   root "users#top"
 
   resources :posts
+
+  get "/posts/:id/destroy", to: "posts#destroy"
+
 end

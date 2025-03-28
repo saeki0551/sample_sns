@@ -1,11 +1,11 @@
 <h1>新規投稿ページ</h1>
 <%= form_with model: @post, local: true do |form| %>
 
-    <p><%= form.label :title %><br>
+    <p><%= form.label :タイトル %><br>
     <%= form.text_field :title %>
     </p>
     
-    <p><%= form.label :content %><br>
+    <p><%= form.label :内容 %><br>
     <%= form.text_area :content %> 
     </p>
     
