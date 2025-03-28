@@ -65,3 +65,5 @@ end
 gem 'devise'
 gem 'pry-rails'
 gem "sassc-rails"
+
+gem "dotenv-rails", "~> 3.1"
