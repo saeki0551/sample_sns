@@ -11,6 +11,17 @@ module SampleSns
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*' # 必要に応じて制限可能
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :patch, :put, :delete, :options, :head],
+          expose: ['Content-Type', 'Accept']
+      end
+    end
+    
+
     # Propshaftの設定を追加
     config.assets.enabled = false # Sprocketsを無効化
     config.assets.paths << Rails.root.join('app', 'assets', 'builds')
