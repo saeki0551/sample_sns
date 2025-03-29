@@ -9,6 +9,11 @@ class ApplicationController < ActionController::Base
     posts_path
   end
 
+  def after_sign_up_path_for(resource)
+    flash[:notice] = "アカウントが作成されました。"  # フラッシュメッセージを設定
+    new_user_session_path 
+  end
+
   private
   def ensure_html_format
     request.format = :html if request.format.nil? || request.format.json?
