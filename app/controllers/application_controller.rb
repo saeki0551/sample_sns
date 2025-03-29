@@ -4,8 +4,11 @@ class ApplicationController < ActionController::Base
 
   before_action :ensure_html_format
   
-  private
+  def after_sign_in_path_for(resource)
+    posts_path
+  end
 
+  private
   def ensure_html_format
     request.format = :html if request.format.nil? || request.format.json?
   end

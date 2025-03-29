@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'postsIndex', media: 'all', 'data-turbolinks-track': 'reload' %>
 <h1>投稿一覧</h1>
+<%= link_to "新規投稿", new_post_path%>
 <% @posts.each do |post| %>
     <p>タイトル</p>
     <span><%= post.title %></span>
