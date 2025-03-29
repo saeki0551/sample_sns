@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
         if @post.save
-            flash[:notice] = '投稿されました。'
+            flash[:notice] = '正常に投稿されました。'
             redirect_to action: 'index' 
         else
             flash[:notice] = '投稿に失敗しました。'
