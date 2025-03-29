@@ -91,11 +91,6 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
-  private
-  
-  def ensure_html_format
-    request.format = :html if request.format.nil? || request.format.json?
-  end
 
 end
 
