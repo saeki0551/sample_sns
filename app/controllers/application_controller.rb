@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :ensure_html_format
   
   def after_sign_in_path_for(resource)
-    flash[:notice] = "正常にログインしました。" # 
+    flash[:notice] = "正常にログインしました。" 
     posts_path
   end
 
