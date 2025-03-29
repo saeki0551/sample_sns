@@ -3,94 +3,78 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  
-  
-  config.hosts.clear # 追加することで、すべてのホストからのリクエストを許可します
+  # Allow all hosts to make requests to the app
+  config.hosts.clear
 
-  # Code is not reloaded between requests.
+  # コードの再読み込みを無効化（パフォーマンス向上）
   config.enable_reloading = false
-  
-  # Eager load code on boot for better performance and memory savings (ignored by Rake tasks).
+
+  # イーガーロードを有効にしてパフォーマンスを向上
   config.eager_load = true
-  
-  # Full error reports are disabled.
+
+  # 完全なエラーレポートを無効化（本番環境でエラーを見せない）
   config.consider_all_requests_local = false
 
-  # Turn on fragment caching in view templates.
+  # キャッシュを有効化
   config.action_controller.perform_caching = true
-  
-  # Cache assets for far-future expiry since they are all digest stamped.
+
+  # アセットのキャッシュ設定（1年の有効期限）
   config.public_file_server.headers = { "cache-control" => "public, max-age=#{1.year.to_i}" }
-  
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.asset_host = "http://assets.example.com"
-  
-  # Store uploaded files on the local file system (see config/storage.yml for options).
+
+  # アップロードファイルの保存先（ローカル）
   config.active_storage.service = :local
-  
-  # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  config.assume_ssl = true
-  
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
 
-  # Skip http-to-https redirect for the default health check endpoint.
-  # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
+  # SSL設定を有効化
+  config.force_ssl = true
 
-  # Log to STDOUT with the current request id as a default log tag.
+  # ログ設定（STDOUTに出力）
   config.log_tags = [ :request_id ]
   config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
-  
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
+
+  # ログレベルの設定（必要に応じて変更）
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
-  # Prevent health checks from clogging up the logs.
+  # 健康チェックのログを抑制
   config.silence_healthcheck_path = "/up"
-  
-  # Don't log any deprecations.
+
+  # 非推奨警告をログに記録しない
   config.active_support.report_deprecations = false
-  
-  # Replace the default in-process memory cache store with a durable alternative.
+
+  # キャッシュストアの設定（固有のキャッシュストアを使用）
   config.cache_store = :solid_cache_store
-  
-  # Replace the default in-process and non-durable queuing backend for Active Job.
+
+  # キューアダプターの設定（固有のキューアダプターを使用）
   config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = { database: { writing: :queue } }
 
-  # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  # メール送信エラーを抑制（設定に応じて）
   # config.action_mailer.raise_delivery_errors = false
-  
-  # Set host to be used by links generated in mailer templates.
+
+  # メール送信時のデフォルトURL設定
   config.action_mailer.default_url_options = { host: "example.com" }
-  
-  # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
-  # config.action_mailer.smtp_settings = {
-    #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
-    #   password: Rails.application.credentials.dig(:smtp, :password),
-    #   address: "smtp.example.com",
-  #   port: 587,
-  #   authentication: :plain
-  # }
-  
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
+
+  # 国際化（I18n）フォールバックの設定
   config.i18n.fallbacks = true
-  
-  # Do not dump schema after migrations.
+
+  # スキーマをダンプしない
   config.active_record.dump_schema_after_migration = false
-  
-  # Only use :id for inspections in production.
+
+  # ActiveRecordのインスペクション時に:idだけを表示
   config.active_record.attributes_for_inspect = [ :id ]
 
-  # Enable DNS rebinding protection and other `Host` header attacks.
+  # DNSリバインディング保護を有効に
   # config.hosts = [
-    #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
+  #   "example.com",     # `example.com`からのリクエストを許可
+  #   /.*\.example\.com/ # `www.example.com`などのサブドメインからも許可
   # ]
-  #
-  # Skip DNS rebinding protection for the default health check endpoint.
+
+  # 健康チェックエンドポイントのDNSリバインディング保護をスキップ
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
+  # 健康チェックリクエストをリダイレクトする設定
+  config.before_configuration do
+    Rails.application.config.middleware.insert_before 0, Rack::Rewrite do
+      r301 %r{.*}, "/up", if: Proc.new { |env| env["REQUEST_PATH"] =~ /health_check/ }
+    end
+  end  
 end
-
