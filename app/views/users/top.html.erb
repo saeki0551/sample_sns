@@ -1,5 +1,12 @@
 <%= stylesheet_link_tag 'usersTop', media: 'all', 'data-turbolinks-track': 'reload' %>
-<h1>ようこそSAMPLE_SNSへ</h1>
-<%= link_to "ログイン", new_user_session_path %>
-<%= link_to "アカウント作成", new_user_registration_path %>
-<%= link_to "ゲストユーザー", posts_path %>
+
+<div class="top-container">
+  <header class="header">
+    <h1>ようこそSAMPLE_SNSへ</h1>
+    <nav class="navigation">
+      <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+      <%= link_to "アカウント作成", new_user_registration_path, class: "nav-link" %>
+      <%= link_to "ゲストユーザー", posts_path, class: "nav-link guest" %>
+    </nav>
+  </header>
+</div>
