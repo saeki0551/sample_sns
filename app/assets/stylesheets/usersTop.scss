@@ -1,47 +1,51 @@
-
 /* 全体のレイアウト */
 .top-container {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    padding: 20px;
-  }
-  
-  /* ヘッダー部分 */
-  .header {
-    background-color: #232f3e; /* Amazonのような色 */
-    color: white;
-    text-align: center;
-    padding: 40px 0;
-  
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-    }
-  
-    .navigation {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-  
-      .nav-link {
-        color: white;
-        font-size: 1.2rem;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-        
-        &:hover {
-          background-color: #f0a500; /* Hover effect */
-        }
-      }
-  
-      .guest {
-        background-color: #00aaff; /* ゲストリンクの色 */
-      }
-    }
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  padding: 20px;
+}
 
-  
-  
+/* ヘッダー部分 */
+.header {
+  background-color: #232f3e; /* Amazonのような色 */
+  color: white;
+  text-align: center;
+  padding: 40px 0;
+  padding-bottom: 80px; /* 下の余白を追加して色を下まで伸ばす */
+  position: relative;
+}
+
+/* ヘッダーのタイトル */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* ナビゲーション */
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: absolute;
+  bottom: 20px; /* リンクを下に配置 */
+  width: 100%;
+}
+
+/* リンク */
+.nav-link {
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+      background-color: #f0a500; /* Hover effect */
+  }
+}
+
+/* ゲストリンクの色 */
+.guest {
+  background-color: #00aaff;
+}
