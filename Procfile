@@ -1,1 +1,1 @@
-web: bundle exec puma -b 'tcp://0.0.0.0:8080'
+web: bundle exec puma -C config/puma.rb
