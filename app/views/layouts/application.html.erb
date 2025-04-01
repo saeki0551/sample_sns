@@ -56,7 +56,8 @@
         </nav>
       </div>
     </header>
-
-    <%= yield %> ← 各ページの内容
+    <% unless controller_name == "top" %>
+      <%= yield %> ← 各ページの内容
+    <% end %>
   </body>
 </html>
