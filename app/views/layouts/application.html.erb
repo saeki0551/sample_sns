@@ -28,7 +28,20 @@
     </div>
     <div class=flashAlert>
       <%= flash[:alert] %>
-    </div
+    </div>
+    <div>
+      <nav class="navigation">
+        <% if user_signed_in? %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+            <%= link_to "アカウント作成", new_user_registration_path %>
+            <%= link_to "ログイン", new_user_session_path %>
+        <% end %>
+        <% unless user_signed_in? %>
+          <%= link_to "ゲストユーザー", posts_path %>
+        <% end %>
+      </nav>
+    </div>
   </header>
 
   <body>
