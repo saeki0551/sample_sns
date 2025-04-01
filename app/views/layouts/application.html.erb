@@ -56,7 +56,7 @@
         </nav>
       </div>
     </header>
-    <% unless controller_name == "top" %>
+    <% unless controller_name == "users" && action_name == "top" %>
       <%= yield %> ← 各ページの内容
     <% end %>
   </body>
