@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "users#top"
 
+  get "users/sign_out", to: "devise/sessions#destroy" 
+
   resources :posts
 
   get "/posts/:id/destroy", to: "posts#destroy"

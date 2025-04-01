@@ -22,29 +22,41 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <header>
-    <div class=flashNotice>
-      <%= flash[:notice] %>
-    </div>
-    <div class=flashAlert>
-      <%= flash[:alert] %>
-    </div>
-    <div>
-      <nav class="navigation">
-        <% if user_signed_in? %>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        <% else %>
-            <%= link_to "アカウント作成", new_user_registration_path %>
-            <%= link_to "ログイン", new_user_session_path %>
-            <%= link_to "ゲストユーザー", posts_path %>
-        <% end %>
-        <% unless user_signed_in? %>
-        <% end %>
-      </nav>
-    </div>
-  </header>
-
   <body>
-    <%= yield %>
+    <% if controller_name == "users" && action_name == "top" %>
+      <%= yield %>  <!-- top.html のときだけ上に表示 -->
+    <% end %>
+
+    <header>
+      <div class=flashNotice>
+        <%= flash[:notice] %>
+      </div>
+      <div class=flashAlert>
+        <%= flash[:alert] %>
+      </div>
+      <div>
+        <nav class="navigation">
+          <% if user_signed_in? %>
+            <div class="destroy_user_session_link">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </div>
+          <% else %>
+              <div class="sign_out_link">
+                <%= link_to "アカウント作成", new_user_registration_path %>
+              </div>
+              <div class="sign_in_link">
+                <%= link_to "ログイン", new_user_session_path %>
+              </div>
+              <div class="sign_up_link">
+                <%= link_to "ゲストユーザー", posts_path %>
+              </div>
+          <% end %>
+          <% unless user_signed_in? %>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <%= yield %> ← 各ページの内容
   </body>
 </html>

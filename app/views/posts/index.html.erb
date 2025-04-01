@@ -9,13 +9,7 @@
     <%= link_to "編集", edit_post_path(post) %>
     <%= link_to "削除", "/posts/#{post.id}/destroy", method: :delete %></br>
 <% end %>
-<% if user_signed_in? %>
-    <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    </li>
-<% else %>
-    <li>
+<% unless user_signed_in? %>
     <%= link_to "戻る", root_path%>
-    </li>
 <% end %>
 
