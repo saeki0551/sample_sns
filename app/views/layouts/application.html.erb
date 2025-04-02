@@ -28,36 +28,43 @@
     <% end %>
 
     <header>
-      <div class=flashNotice>
-        <%= flash[:notice] %>
+      <div class="flashNotice">
+      <%= flash[:notice] %>
       </div>
-      <div class=flashAlert>
-        <%= flash[:alert] %>
+      <div class="flashAlert">
+      <%= flash[:alert] %>
       </div>
-      <div>
-        <nav class="navigation">
+      <div class="navigation">
+        <% unless controller_name == "sessions" && action_name == "new" || controller_name == "registrations" && action_name == "new" %>
           <% if user_signed_in? %>
             <div class="destroy_user_session_link">
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
             </div>
+            <div class="new_post_link">
+              <%= link_to "新規投稿", new_post_path%>
+            </div>
           <% else %>
-              <div class="sign_out_link">
-                <%= link_to "アカウント作成", new_user_registration_path %>
+            <div class="sign_out_link">
+              <%= link_to "アカウント作成", new_user_registration_path %>
+            </div>
+            <div class="sign_in_link">
+              <%= link_to "ログイン", new_user_session_path %>
+            </div>
+            <div class="sign_up_link">
+              <%= link_to "ゲストユーザー", posts_path %>
+            </div>
+            <% unless controller_name == "users" && action_name == "top" %> <!-- もしルートパス(users#top)だったら表示しない --> 
+              <div class="new_post_link">
+                <%= link_to "新規投稿", new_user_registration_path %>
               </div>
-              <div class="sign_in_link">
-                <%= link_to "ログイン", new_user_session_path %>
-              </div>
-              <div class="sign_up_link">
-                <%= link_to "ゲストユーザー", posts_path %>
-              </div>
+            <% end %>
           <% end %>
-          <% unless user_signed_in? %>
-          <% end %>
-        </nav>
+        <% end %>
       </div>
     </header>
+
     <% unless controller_name == "users" && action_name == "top" %>
-      <%= yield %> ← 各ページの内容
+      <%= yield %> <!-- ← 各ページの内容 -->
     <% end %>
   </body>
 </html>
