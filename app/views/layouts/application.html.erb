@@ -22,8 +22,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <% if controller_name == "users" && action_name == "top" %>
+  <body class="<%= "#{controller_name}-#{action_name}" %>"> <!-- 特定のページだけに適応 -->
+  <% if controller_name == "users" && action_name == "top" %>
       <%= yield %>  <!-- top.html のときだけ上に表示 -->
     <% end %>
 
@@ -44,13 +44,13 @@
               <%= link_to "新規投稿", new_post_path%>
             </div>
           <% else %>
-            <div class="sign_out_link">
+            <div class="sign_up_link">
               <%= link_to "アカウント作成", new_user_registration_path %>
             </div>
             <div class="sign_in_link">
               <%= link_to "ログイン", new_user_session_path %>
             </div>
-            <div class="sign_up_link">
+            <div class="guest_user_link">
               <%= link_to "ゲストユーザー", posts_path %>
             </div>
             <% unless controller_name == "users" && action_name == "top" %> <!-- もしルートパス(users#top)だったら表示しない --> 
