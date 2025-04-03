@@ -8,7 +8,7 @@ class PostsController < ApplicationController
         if user_signed_in?
             @post = Post.new #空のインスタンスを生成
         else
-            flash[:alert] = '新規投稿するにはアカウントを作成してください。'
+            flash[:alert] = '新規投稿するにはアカウントを作成してください。またはログインしてください。'
             puts "ログインしていないユーザーが投稿しようとしています。" # デバッグ用
             redirect_to new_user_registration_path # アカウント作成ページへリダイレクト
         end
