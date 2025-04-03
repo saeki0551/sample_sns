@@ -5,12 +5,14 @@
     <span><%= post.title %></span>
     <p>内容</p>
     <span><%= post.content %></span>
-    <div class="edit_post_link">
-        <%= link_to "編集", edit_post_path(post) %>
-    </div>
-    <div class="destroy_post_link">
-        <%= link_to "削除", "/posts/#{post.id}/destroy", method: :delete %></br>
-    </div>
+    <% if user_signed_in? %>
+        <div class="edit_post_link">
+            <%= link_to "編集", edit_post_path(post) %>
+        </div>
+        <div class="destroy_post_link">
+            <%= link_to "削除", "/posts/#{post.id}/destroy", method: :delete %></br>
+        </div>
+    <% end %>
 <% end %>
 
 
