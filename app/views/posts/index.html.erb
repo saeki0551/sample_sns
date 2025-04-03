@@ -12,7 +12,5 @@
         <%= link_to "削除", "/posts/#{post.id}/destroy", method: :delete %></br>
     </div>
 <% end %>
-<% unless user_signed_in? %>
-    <%= link_to "戻る", root_path%>
-<% end %>
+
 

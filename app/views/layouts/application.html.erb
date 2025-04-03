@@ -50,12 +50,17 @@
             <div class="sign_in_link">
               <%= link_to "ログイン", new_user_session_path %>
             </div>
-            <div class="guest_user_link">
-              <%= link_to "ゲストユーザー", posts_path %>
+            <% unless controller_name == "posts" && action_name == "index" %> <!-- ログインしてなく、もしゲストユーザーだったら表示しない --> 
+              <div class="guest_user_link">
+                <%= link_to "ゲストユーザー", posts_path %>
+              </div>
+            <% end %> 
+            <% unless controller_name == "users" && action_name == "top" %> <!-- ログインしていなく、もしルートパス(users#top)だったら表示しない --> 
+            <div class="new_post_link">
+              <%= link_to "新規投稿", new_post_path%>
             </div>
-            <% unless controller_name == "users" && action_name == "top" %> <!-- もしルートパス(users#top)だったら表示しない --> 
-              <div class="new_post_link">
-                <%= link_to "新規投稿", new_user_registration_path %>
+              <div class="root_path_link">
+                <%= link_to "戻る", root_path%>
               </div>
             <% end %>
           <% end %>
