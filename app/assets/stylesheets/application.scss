@@ -23,30 +23,63 @@ body.users-top{
    background-color: black;
 }
 
+body.users-top .sign_up_link{
+   margin-top: 200px;
+   text-align: center;
+}
+
 body.users-top .sign_up_link a{
-    display: block;
-    text-decoration: none;
+   display: inline-block;
+   text-decoration: none;
+   color: white;
+   padding: 10px 20px;
+   border: solid 1px white;
+   border-radius: 10px;    
+ }
+
+ body.users-top .sign_up_link a:hover{
+   background-color: white;
+   color :black
+ }
+  
+body.users-top .sign_in_link{
+   margin-top: 20px;
+   text-align: center;
+}
+
+body.users-top .sign_in_link a{
+   display: inline-block;
+   text-decoration: none;
+   color: white;
+   padding: 10px 20px;
+   border: solid 1px white;
+   border-radius: 10px;
+ }
+
+ body.users-top .sign_in_link a:hover{
+   background-color: white;
+   color :black
+ }
+
+ body.users-top  .guest_user_link{
+    margin-top: 20px;
     text-align: center;
-    margin-top: 200px;
-    color: white;
- }
-
- body.users-top .sign_in_link a{
-   display: block;
-   text-decoration: none;
-   text-align: center;
-   margin-top: 30px;
-   color: white;
- }
-
+   }
+   
  body.users-top  .guest_user_link a{
-   display: block;
+   display: inline-block;
    text-decoration: none;
-   text-align: center;
-   margin-top: 30px;
    color: white;
+   padding: 10px 20px;
+   border: solid 1px white;
+   border-radius: 10px;    
  }
 
-.new_post_link a{
+ body.users-top  .guest_user_link a:hover{
+   background-color: white;
+   color :black
+ }
+
+ .new_post_link a{
    color: red;
  }
