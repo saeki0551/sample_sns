@@ -1,18 +1,24 @@
 <%= stylesheet_link_tag 'postsIndex', media: 'all', 'data-turbolinks-track': 'reload' %>
-<h1>投稿一覧</h1>
-<% @posts.each do |post| %>
-    <p>タイトル</p>
-    <span><%= post.title %></span>
-    <p>内容</p>
-    <span><%= post.content %></span>
-    <% if user_signed_in? %>
-        <div class="edit_post_link">
-            <%= link_to "編集", edit_post_path(post) %>
-        </div>
-        <div class="destroy_post_link">
-            <%= link_to "削除", "/posts/#{post.id}/destroy", method: :delete %></br>
-        </div>
-    <% end %>
-<% end %>
+<div class="postsIndex-all">
+    <h1>投稿一覧</h1>
+    <div class="postsContainer">
+        <% @posts.each do |post| %>
+            <p>タイトル</p>
+            <span><%= post.title %></span>
+            <p>内容</p>
+            <span><%= post.content %></span>
+            <% if user_signed_in? %>
+                <div class="postsIndex-link">
+                    <div class="edit_post_link">
+                        <%= link_to "編集", edit_post_path(post) %>
+                    </div>
+                    <div class="destroy_post_link">
+                        <%= link_to "削除", "/posts/#{post.id}/destroy", method: :delete %></br>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
 
 

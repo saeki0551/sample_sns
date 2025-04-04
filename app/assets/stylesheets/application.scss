@@ -19,8 +19,11 @@
     background-color: rgb(250, 46, 46);
  }
 
+body{
+  background-color: black;
+}
+
 body.users-top{
-   background-color: black;
 }
 
 body.users-top .sign_up_link{
@@ -79,6 +82,10 @@ body.users-top .sign_in_link a{
    background-color: white;
    color :black
  }
+
+.navigation a{
+  color: white;
+}
 
  .new_post_link a{
    color: red;
