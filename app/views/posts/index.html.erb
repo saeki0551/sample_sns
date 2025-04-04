@@ -1,8 +1,8 @@
 <%= stylesheet_link_tag 'postsIndex', media: 'all', 'data-turbolinks-track': 'reload' %>
 <div class="postsIndex-all">
     <h1>投稿一覧</h1>
-    <div class="postsContainer">
-        <% @posts.each do |post| %>
+    <% @posts.each do |post| %>
+        <div class="postsContainer">
             <p>タイトル</p>
             <span><%= post.title %></span>
             <p>内容</p>
@@ -17,8 +17,8 @@
                     </div>
                 </div>
             <% end %>
-        <% end %>
-    </div>
+        </div>
+    <% end %>
 </div>
 
 
