@@ -2,6 +2,12 @@ class PostsController < ApplicationController
 
     def index
         @posts = Post.all.order(updated_at: :desc)
+        if params[:id].present?
+            @post = Post.find(params[:id])
+        else
+            @post = Post.new #空のインスタンスを生成
+        end
+
     end
 
     def new

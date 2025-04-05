@@ -1,5 +1,15 @@
 <%= stylesheet_link_tag 'postsIndex', media: 'all', 'data-turbolinks-track': 'reload' %>
 <div class="postsIndex-all">
+    <div class="postsForm-all">
+        <h1>新規・更新投稿フォーム</h1>
+        <%= form_with model: @post, local: true do |form| %>
+            <% if @post.new_record? %> <!-- 既にデータベースに保存されているか？ -->
+                <%= render :partial => 'new', :locals => {:form => form} %>
+            <% else %>
+                <%= render :partial => 'edit', :locals => {:form => form} %>
+            <% end %>
+        <% end %>
+    </div>
     <h1>投稿一覧</h1>
     <% @posts.each do |post| %>
         <div class="postsContainer">
@@ -10,7 +20,7 @@
             <% if user_signed_in? %>
                 <div class="postsIndex-link">
                     <div class="edit_post_link">
-                        <%= link_to "編集", edit_post_path(post) %>
+                        <%= link_to "編集", posts_path(id: post.id) %>
                     </div>
                     <div class="destroy_post_link">
                         <%= link_to "削除", "/posts/#{post.id}/destroy", method: :delete %></br>
