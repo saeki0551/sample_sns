@@ -66,6 +66,6 @@ gem 'devise'
 gem 'pry-rails'
 gem "sassc-rails"
 
-gem "dotenv-rails", "~> 3.1"
 gem 'rack-cors'
 gem 'rack-rewrite'
+gem 'dotenv-rails'
