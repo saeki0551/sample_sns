@@ -69,3 +69,4 @@ gem "sassc-rails"
 gem 'rack-cors'
 gem 'rack-rewrite'
 gem 'dotenv-rails'
+gem 'pg'

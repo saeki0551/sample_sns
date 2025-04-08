@@ -23,6 +23,8 @@ console_command = '/rails/bin/rails console'
   cpus = 2
 
 [deploy]
-release_command = "bin/rails db:migrate"
+  release_command = "bin/rails db:migrate"
 
-
+[mounts]
+  source = "data"
+  destination = "/data"

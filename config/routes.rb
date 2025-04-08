@@ -29,4 +29,6 @@ Rails.application.routes.draw do
     end
   end
   
+  get "/db_status", to: "health#db_status"
+
 end
