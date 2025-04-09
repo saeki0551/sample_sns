@@ -9,8 +9,3 @@ production:
   url: postgresql://sample_db_0t0w_user:rLpo8SNki9fjMPoAUl0ClZW6Q9CI3Kgo@dpg-cvqb371r0fns73em1q40-a.oregon-postgres.render.com/sample_db_0t0w
   pool: 5
   timeout: 5000
-
-  cable:
-    adapter: postgresql
-    url: <%= ENV["DATABASE_URL"] %>
-    pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
