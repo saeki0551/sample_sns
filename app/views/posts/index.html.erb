@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'postsIndex', media: 'all', 'data-turbolinks-track': 'reload' %>
 <div class="postsIndex-all">
-    <% if user_signed_in  %>
+    <% if user_signed_in?  %>
         <div class="postsForm-all">
             <h1>新規・更新投稿フォーム</h1>
             <%= form_with model: @post, local: true do |form| %>
