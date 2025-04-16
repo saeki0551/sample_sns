@@ -9,6 +9,16 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
+  header{
+    position: fixed;
+  }
+
+  /* users#top のときだけ、position: fixedを無効にする */
+  body.users-top header {
+    position: static !important;
+    text-align: center;
+  }
+  
  .flashNotice{
     text-align: center;
     background-color: rgb(11, 186, 244);
