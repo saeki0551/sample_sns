@@ -41,7 +41,10 @@
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
             </div>
             <div class="new_post_link">
-              <%= link_to "新規投稿", new_post_path%>
+              <%= link_to "新規投稿", posts_path %>
+            </div>
+            <div class="current_user_link">
+              <%= link_to current_user.email, "/users/#{current_user.id}" %>
             </div>
           <% else %>
             <div class="sign_up_link">

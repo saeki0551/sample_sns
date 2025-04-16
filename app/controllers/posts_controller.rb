@@ -4,10 +4,10 @@ class PostsController < ApplicationController
         @posts = Post.all.order(updated_at: :desc)
         if params[:id].present?
             @post = Post.find(params[:id])
+            @user = User.find_by(id: @post.user_id)
         else
             @post = Post.new #空のインスタンスを生成
         end
-
     end
 
     def new
@@ -19,9 +19,11 @@ class PostsController < ApplicationController
             redirect_to new_user_registration_path # アカウント作成ページへリダイレクト
         end
     end
-
+    
     def create
         @post = Post.new(post_params)
+        @post.user_id = current_user.id
+        # binding.pry
         if @post.save
             flash[:notice] = '正常に投稿されました。'
             redirect_to action: 'index' 
