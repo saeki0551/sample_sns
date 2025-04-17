@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   # パスワード確認のカスタムバリデーション
   validates :password, confirmation: { message: "もう一度パスワードを入力してください" }, on: :create
+  has_many :posts  # これを追加しているか確認！
 end
